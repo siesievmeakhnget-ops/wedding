@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julian & Sophia | 05.24.26</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --emerald: #062c21;
+            --dark-bg: #041a14;
+            --gold: #c5a059;
+            --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Section Layout */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+        }
+
+        /* Motion/Scroll Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Typography */
+        h1, h2 { font-family: 'Playfair Display', serif; font-weight: 400; }
+        
+        .script {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0;
+        }
+
+        .gold-text { color: var(--gold); letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem; }
+
+        /* Page 1: Hero */
+        #hero { background: radial-gradient(circle, #083a2c 0%, #041a14 100%); }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        /* Page 2: The Details */
+        #details { background-color: var(--emerald); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 40px;
+            max-width: 500px;
+            border-radius: 4px;
+        }
+
+        /* Page 3: Location/RSVP */
+        #rsvp { background-color: var(--dark-bg); }
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 50px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.4s;
+        }
+        .btn:hover {
+            background: var(--gold-gradient);
+            color: black;
+            border-color: transparent;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+    </style>
+</head>
+<body>
+
+    <section id="hero">
+        <div class="reveal">
+            <p class="gold-text">Save the Date</p>
+            <div class="script">Bunheng & Lina</div>
+            <p style="letter-spacing: 5px;">05 . 24 . 2026</p>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <section id="details">
+        <div class="reveal glass-card">
+            <p class="gold-text">The Celebration</p>
+            <h2>Join Us</h2>
+            <p style="line-height: 2;">
+                Together with their families,<br>
+                Julian and Sophia invite you to <br>
+                witness the beginning of their new chapter.
+            </p>
+            <div style="height: 1px; background: var(--gold); width: 50px; margin: 20px auto;"></div>
+            <p>4:30 PM AT THE GRAND ORCHARD</p>
+        </div>
+    </section>
+
+    <section id="rsvp">
+        <div class="reveal">
+            <p class="gold-text">Location</p>
+            <h2>Napa Valley, CA</h2>
+            <p>123 Blossom Lane, Napa Valley, California</p>
+            
+            <a href="https://maps.google.com" target="_blank" class="btn">View Map</a>
+            <br><br>
+            <a href="mailto:rsvp@wedding.com" class="btn" style="background: var(--gold-gradient); color: #000;">RSVP Now</a>
+            
+            <p style="margin-top: 50px; font-size: 0.7rem; opacity: 0.5;">
+                WE CAN'T WAIT TO CELEBRATE WITH YOU
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Smooth Reveal Logic
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+
+</body>
+</html>
